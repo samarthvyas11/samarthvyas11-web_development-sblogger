@@ -1,0 +1,61 @@
+ {% extends 'base.html' %}
+ {% block title %} Create_Blog
+{% endblock title %}
+
+{% block body %}
+
+    {% if user.is_authenticated %}
+    <div class="container">
+    <h1>Create your blog</h1>
+    <form  action = "/blog/uploadblog" method="POST" >
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="title">Title of Blog</label>
+          <input type="text" class="form-control" id="blogtitle" name="blogtitle" placeholder="Title">
+        </div>
+        <div class="form-group">
+        <label for="email">Email of writer</label>
+        <input type="email" class="form-control" id="emailblog" name="blogemail" placeholder="name@gmail.com">
+      </div>
+      <div class="form-group">
+        <label for="name">Name of writer</label>
+        <input type="text" class="form-control" id="blogauthor" name="blogauthor" placeholder="author">
+      </div>
+
+        <div class="form-group">
+          <label for="contentblog">Content</label>
+          <textarea class="form-control" id="contentblog" rows="3" name="contentblog"placeholder="Content of the blog"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>  
+    </div>  
+  
+
+
+
+
+
+
+
+
+
+  {% else %}
+  Please login to post a blog
+  {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock body %}
+    

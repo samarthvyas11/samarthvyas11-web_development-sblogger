@@ -1,0 +1,42 @@
+{% extends 'base.html' %}}
+
+{% block title %} Search
+{% endblock title %}
+    
+{% block body %}
+<div class="container my-3">
+
+<h2>Search result :-</h2>
+{% if allPosts|length < 1 %}
+   <p>No search results</p>
+    Your search query : <b>{{query}}</b> did not match any documents. <br>
+    Suggestions:
+    <ul>
+    <li>Make sure that all words are spelled correctly.</li>
+    <li>Try more general keywords.</li>
+   <li> Try fewer keywords.</li>
+   <li> Try different keywords.</li>
+    </li>
+    </ul>
+
+
+{% endif %}
+ {%for post in allPosts %}   
+
+    <div class="col p-4 d-flex flex-column position-static my-3" style="background-color:transparent;">
+        <strong style="color: lightgoldenrodyellow;font-size: 159%;">{{post.title}}</strong>
+        <h3 class="mb-0">{{post.author}}</h3>
+        <div class="mb-1">{{post.email}}</div>
+        <p class="card-text mb-auto">{{post.content| truncatechars:500}}</p>
+        <a href="/blog/{{ post.slug }}" role="button" style="color: tomato;">Continue reading</a>
+      </div>
+      <hr style="border: 1px solid white;">
+ {% endfor %}   
+</div>  
+
+
+
+    
+
+    
+{% endblock body%}

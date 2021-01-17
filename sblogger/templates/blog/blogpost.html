@@ -1,0 +1,60 @@
+{% extends 'base.html' %}}
+
+{% block title %} Home
+{% endblock title %}
+{% block body %}
+{% load humanize %}
+<div class="container">
+    <div class="jumbotron p-4 p-md-5 text-white rounded  m-3" style="background-color: transparent;">
+        <div class="col-md-6 px-0">
+          <h1>{{post.title}}</h1>
+          <h4>{{post.timeStamp}} by {{post.author}}</h4>
+          
+          <p class="lead my-3">{{post.content}}</p>
+
+        </div>
+      </div>
+</div>
+
+
+
+
+<div class="container">
+  <h2> Comments ({{comments.count}})</h2>
+  <div class="my-2">
+  {% if user.is_authenticated %}
+  <form action="/blog/postComment" method="post">
+      {% csrf_token %}
+      <div class="form-group">
+          <label for="exampleInputEmail1">Post Comment </label>
+          <input type="text" class="form-control" name="comment" placeholder="Enter comment here">
+      </div>
+      <input type="hidden" name="postSno" value="{{post.sno}}">
+      <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  {% else %}
+  Please login to post a comment 
+  {% endif %}
+  
+  <!-- {% load extras %} -->
+  </div>
+  {% for comment in comments %}
+  <div class="row my-3">
+      <div class="col-md-1  ">
+      <img class="rounded mx-auto d-block w-100 border border-dark p-2" src="/static/img/user.jpg"  alt="user">
+      </div>
+      <div class="col-md-11 "> 
+      <b> {{comment.user.username}} </b> <span class="badge badge-secondary ">{{comment.timestamp| naturaltime}}</span>
+      <div>   {{comment.comment}} </div>
+     
+    
+      </div>
+  </div>
+
+  {% endfor %}
+
+  
+</div>
+    
+{% endblock body %}
+

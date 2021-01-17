@@ -1,0 +1,75 @@
+{% extends 'base.html' %}}
+
+{% block title %} Home
+{% endblock title %}
+{% block homeactive%} active{% endblock homeactive%}
+{%block body%}
+
+<div class="container my-2" style="background-color: transparent;">
+    <div class="jumbotron" style="background-color: transparent; display: inline-block; width: 50%;" >
+        <h1 class="display-3"><b> Welcome to the sBlogger</b></h1>
+        <p class="lead">sblogger is a web application where you can express your blogs and give your views on others blogs.It provides the knowledge of blogs from each fields.</p>
+        <hr class="my-4">
+        <p>Here you can push your views and thinking about any topics which makes others to say their opinion about that.</p>
+        <a class="btn btn-primary btn-lg" href="/blog" style="background-color:rgb(165, 232, 98) ;border-radius: 12px;" role="button">Go to blog</a>
+        <a class="btn btn-primary btn-lg" href="/createblog" style="background-color: rgb(165, 232, 98);border-radius: 12px;" role="button"> Create your blog </a>
+      </div>
+
+
+
+
+
+      <div class="createblog " style="display: inline-block; width: 30%; vertical-align: top;margin: 0% ;margin-top: 8%;margin-left: 19%;">
+        {% if user.is_authenticated %}
+            
+            
+                <h2 class="mb-0">Hey,{{user.username}} !</h2>
+                <!-- <a>{{user.email}}</a> -->
+                
+                <div class="profile" style="display: inline-block;width: 10%;"><img src="static/img/user.jpg" style="width: 14mm;height: 17mm;border-radius: 50%;"></div>
+          
+               
+
+            </div>
+              
+      {% else %}
+      <div class="modal-body">
+        <form  method="POST" action="/login" autocomplete="off";>
+        {% csrf_token %}
+          <div class="form-group" >
+            <label for="username" >Username</label>
+            
+            <input type="text" class="form-control" style="background-color: transparent;color: white;"  id="loginusername" name="loginusername" placeholder="username" Required>
+          </div>
+    
+          <div class="form-group">
+            <label for="pass" >Password</label>
+            <input type="password" class="form-control" style="background-color: transparent; color: white;"  id="loginpassword" name= "loginpassword"  placeholder="Enter password" Required>
+          </div>
+         
+
+
+         
+        
+            <button type="submit" class="btn btn-primary" style="background-color: red; width:82%; border-radius: 12px;">Login</button>
+     
+        </form>
+      </div>
+        {% endif %}
+ 
+ 
+    
+     </div>     
+</div>
+
+
+
+
+
+
+
+
+
+
+{% endblock body%}
+    

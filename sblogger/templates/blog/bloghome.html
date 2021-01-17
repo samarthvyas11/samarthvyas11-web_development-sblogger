@@ -1,0 +1,29 @@
+{% extends 'base.html' %}}
+
+{% block title %} Home
+{% endblock title %}
+{% block blogactive %} active {% endblock blogactive %}    
+{% block body %}
+<div class="container my-3" style="width: 53%; background-image: url(statc/img/bg.jpg); ">
+
+<h2>Blogs by the Bloggers</h2>
+ {%for post in allposts %}   
+    <div class="col p-4 d-flex flex-column position-static my-3"   >
+        <strong style="color: rgba(171, 215, 228, 0.981); font-size: 159%;"><b>{{post.title}}</b>
+         :-</strong>
+        
+        <h5 class="mb-0">by:-  {{post.author}}</h5>
+        <div class="mb-1">{{post.email}}</div>
+        <p class="card-text mb-auto">{{post.content| truncatechars:200}}</p>
+        <a href="/blog/{{ post.slug }}" role="button" style="color:darkgoldenrod;">Continue reading</a>
+      </div>
+      <hr style="border: 1px solid white;">
+ {% endfor %}   
+</div>  
+
+
+
+    
+
+    
+{% endblock body%}
